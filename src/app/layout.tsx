@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import ThemeWrapper from "./components/ThemeWrapper";
+import MenuSideDrawer from "./components/MenuSideDrawer";
 
 
 const noto = localFont({
@@ -27,6 +28,7 @@ export default function RootLayout({
         className={`${noto.variable} antialiased`}
       >
         <ThemeWrapper>
+          <MenuSideDrawer />
           {children}
         </ThemeWrapper>
       </body>
