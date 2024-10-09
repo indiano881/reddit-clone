@@ -6,6 +6,9 @@ const darkTheme = createTheme({
     palette: {
       mode: 'dark',
     },
+    typography: {
+        fontFamily: 'var(--font-noto), sans-serif', 
+      },
   });
 const ThemeWrapper = ({children}:{children:React.ReactNode}) => {
     return (
