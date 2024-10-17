@@ -21,6 +21,7 @@ import ListItemText from '@mui/material/ListItemText';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import TimelineIcon from '@mui/icons-material/Timeline';
 import HomeIcon from '@mui/icons-material/Home';
+import Link from 'next/link';
 
 const drawerWidth = 175;
 
@@ -138,7 +139,7 @@ export default function MiniDrawer({ setPage, page }: any) {
               textDecoration: 'none',
             }}
           >
-            Reddit
+            <Link href={'/'}>Reddit</Link> 
           </Typography>
         </Toolbar>
       </AppBar>
