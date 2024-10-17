@@ -14,7 +14,7 @@ export default async function Home() {
       {error|| data.length===0 ? (
         <div>no posts availbale</div>
         ): (
-        data.map((item, index)=> <HomePost post={...item} key={index}/>)
+        data.map((item, index)=> <div key={index}><HomePost post={item}/></div>)
         )}
       </h1>
   );
