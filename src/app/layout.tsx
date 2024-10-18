@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import ThemeWrapper from "./components/ThemeWrapper";
 import MenuSideDrawer from "./components/MenuSideDrawer";
+import { QueryClientProvider } from "../../providers/query-client-provider";
 
 
 const noto = localFont({
@@ -27,10 +28,12 @@ export default function RootLayout({
       <body
         className={`${noto.variable} antialiased`}
       >
-        <ThemeWrapper>
-          <MenuSideDrawer />
-          {children}
-        </ThemeWrapper>
+        <QueryClientProvider>
+          <ThemeWrapper>
+            <MenuSideDrawer />
+            {children}
+          </ThemeWrapper>
+        </QueryClientProvider>
       </body>
     </html>
   );

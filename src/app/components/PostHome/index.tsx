@@ -1,8 +1,14 @@
 
 import Link from "next/link";
-import { getHomePosts } from "../../../../utils/supabase/queries";
 
-const HomePost = ({post}:{post:any}) => {
+interface PostType {
+    title: string;
+    slug: string;
+    id: string | number;
+    users: { email?: string | null | undefined } | null;
+  }
+
+const HomePost = ({post}:{post:PostType}) => {
 
   
     return(
@@ -11,7 +17,7 @@ const HomePost = ({post}:{post:any}) => {
         <h1>{post.title}</h1>
         <h3>slug={post.slug}</h3>
         <h2>{post.id}</h2>
-        {post.users.email ? <h6>{post.users.email}</h6> : <h6>Anonymous user</h6>}
+        {post.users?.email ? <h6>{post.users.email}</h6> : <h6>Anonymous user</h6>}
         
         </Link>
         </div>
