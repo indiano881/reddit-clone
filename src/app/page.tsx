@@ -2,7 +2,6 @@
 
 
 import { getHomePosts } from "../../utils/supabase/queries";
-import HomePost from "./components/PostHome";
 import PostsContainer from "./components/PostsContainer";
 
 
@@ -13,7 +12,7 @@ export default async function Home() {
   return (
         <>
           <h1 className="text-5xl">connected</h1>
-          <PostsContainer />
+          <PostsContainer initialData= {data}/>
         </>
     
   );

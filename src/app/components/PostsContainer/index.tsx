@@ -1,18 +1,28 @@
-import { getHomePosts } from "../../../../utils/supabase/queries";
+"use client"
+import { useQuery } from "@tanstack/react-query";
 import HomePost from "../PostHome";
+import { getHomePosts } from "../../../../utils/supabase/queries";
 
 
-const PostsContainer = async() => {
+const PostsContainer = ({initialData}:{initialData:any}) => {
 
-    const {data,error}= await getHomePosts()
+   const {data}=useQuery({
+    queryKey: ['home-posts'],
+    queryFn: async () => {
+        const {data,error}= await getHomePosts()
+
+        if (error) throw error
+        return data
+    }
+   })
   
-    console.log({data, error})
+   
     return(
         <>
-        {error|| data.length===0 ? (
+        {initialData.length===0 ? (
         <div>no posts availbale</div>
         ): (
-        data.map((item, index)=> <div key={index}><HomePost post={item}/></div>)
+            initialData.map((item:any, index:any)=> <div key={index}><HomePost post={item}/></div>)
         )}
         </>
     )
