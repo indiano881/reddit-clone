@@ -1,21 +1,20 @@
-import { createClient } from "../../utils/supabase/client";
+
+
+
 import { getHomePosts } from "../../utils/supabase/queries";
 import HomePost from "./components/PostHome";
+import PostsContainer from "./components/PostsContainer";
 
 
 export default async function Home() {
   const {data,error}= await getHomePosts()
+  
   console.log({data, error})
   return (
-    <h1 className="text-5xl">
-      
-      connected
-      
-      {error|| data.length===0 ? (
-        <div>no posts availbale</div>
-        ): (
-        data.map((item, index)=> <div key={index}><HomePost post={item}/></div>)
-        )}
-      </h1>
+        <>
+          <h1 className="text-5xl">connected</h1>
+          <PostsContainer />
+        </>
+    
   );
 }
