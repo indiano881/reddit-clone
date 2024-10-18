@@ -10,3 +10,8 @@ export const getHomePosts= async ()=>{
 }
 
 export type HomePostType= QueryData<ReturnType<typeof getHomePosts>>;//to take the data we return
+
+export const getPostByQuery = (query:string) => {
+    const supabase = createClient();
+    return ( supabase.from("posts").select('id, title, slug').textSearch('title', query))
+}
