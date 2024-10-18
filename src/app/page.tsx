@@ -12,7 +12,7 @@ export default async function Home() {
   return (
         <>
           <h1 className="text-5xl">connected</h1>
-          <PostsContainer initialData= {data}/>
+          <PostsContainer initialPosts= {data}/>
         </>
     
   );
