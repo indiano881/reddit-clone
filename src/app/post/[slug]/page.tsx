@@ -1,4 +1,6 @@
-import { createClient } from "../../../../utils/supabase/client";
+
+import { createClient } from "../../../../utils/supabase/server";
+import { notFound } from "next/navigation";
 
 
 const  SinglePost = async ({params}:{params: {slug: string}})=> {
@@ -9,6 +11,8 @@ const  SinglePost = async ({params}:{params: {slug: string}})=> {
     .select('title, content, users("email")')
     .eq('slug',params.slug)
     console.log(data)
+
+    if (!data) notFound()
     return (
         <div className="m-20 bg-yellow-200">
         <h2>Page single article</h2>
