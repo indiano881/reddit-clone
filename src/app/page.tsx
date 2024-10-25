@@ -9,7 +9,7 @@ import SearchBar from "./components/SearchBar";
 export default async function Home() {
   const {data,error}= await getHomePosts()
   
-  console.log({data, error})
+
   return (
         <>
           <h1 className="text-5xl">connected</h1>

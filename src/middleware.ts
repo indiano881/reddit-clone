@@ -1,5 +1,5 @@
 import { createServerClient } from "@supabase/ssr";
-import { NextResponse, type NextRequest } from "next/server";
+import {  NextResponse, NextRequest } from "next/server";
 
 export const middleware= async (request: NextRequest) => {
     let supabaseResponse= NextResponse.next({request})
@@ -24,6 +24,7 @@ export const middleware= async (request: NextRequest) => {
         }
     )
 
-    await supabase.auth.getUser()
+    const {data}= await supabase.auth.getUser();
+    console.log(data)
     return supabaseResponse;
 }

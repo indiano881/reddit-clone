@@ -10,7 +10,7 @@ const  SinglePost = async ({params}:{params: {slug: string}})=> {
     .from("posts")
     .select('title, content, users("email")')
     .eq('slug',params.slug)
-    console.log(data)
+    
 
     if (!data) notFound()
     return (
