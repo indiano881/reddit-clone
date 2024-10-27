@@ -4,6 +4,7 @@
 import { getHomePosts } from "../../utils/supabase/queries";
 import PostsContainer from "./components/PostsContainer";
 import SearchBar from "./components/SearchBar";
+import UserHeader from "./components/userHeader";
 
 
 export default async function Home() {
@@ -12,7 +13,7 @@ export default async function Home() {
 
   return (
         <>
-          <h1 className="text-5xl">connected</h1>
+        <UserHeader />
           <SearchBar />
           <PostsContainer initialPosts= {data}/>
         </>
