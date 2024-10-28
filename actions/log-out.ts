@@ -6,5 +6,5 @@ import { createClient } from "../utils/supabase/server"
 export const logOut= () => {
     const supabase= createClient();
     supabase.auth.signOut();
-    redirect("/auth/sign-up")
+    redirect("/auth/log-in")
 }
