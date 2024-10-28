@@ -1,5 +1,6 @@
 "use server"
 
+import { redirect } from "next/dist/server/api-utils";
 import { createClient } from "../utils/supabase/server";
 
 export const signUp = async (formData: FormData) => {
@@ -17,6 +18,7 @@ export const signUp = async (formData: FormData) => {
     if (user && user.email) {
         await supabase.from("users").insert([{id: user.id, email: user.email }])
         console.log({data, error})
+        
     }
 
    
