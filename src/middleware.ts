@@ -24,7 +24,15 @@ export const middleware= async (request: NextRequest) => {
         }
     )
 
-    const {data}= await supabase.auth.getUser();
-    console.log(data)
+    const {data: {user}}= await supabase.auth.getUser();
+    
+    if(!user && protectedRoutes.includes(request.nextUrl.pathname)) {
+        const url=request.nextUrl.clone();
+        url.pathname= "/auth/log-in"
+        return NextResponse.redirect(url)
+    }
+    
     return supabaseResponse;
 }
+
+const protectedRoutes= ["/create"]
