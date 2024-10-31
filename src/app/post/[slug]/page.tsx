@@ -9,7 +9,7 @@ const  SinglePost = async ({params}:{params: {slug: string}})=> {
     const supabase= createClient();
     const {data}= await supabase
     .from("posts")
-    .select('title, content, user_id, users("email")')
+    .select('id,title, content, user_id, users("email")')
     .eq('slug',params.slug)
     
 
@@ -26,7 +26,7 @@ const  SinglePost = async ({params}:{params: {slug: string}})=> {
                 <h4>{data[0].title}</h4>
                 <h4>{data[0].content}</h4>
                 <h4>{data[0].users?.email}</h4>
-                {isAuthor && <DeleteButton />}
+                {isAuthor && <DeleteButton postId={data[0].id} />}
             </div>
         ): (<h5>post no visible </h5>)}
         
