@@ -2,23 +2,11 @@
 import { useQuery } from "@tanstack/react-query";
 import HomePost from "../PostHome";
 import { getHomePosts } from "../../../../utils/supabase/queries";
+import { revalidatePath } from "next/cache";
 
+export const revalidate= 60*15;
 
 const PostsContainer = ({initialPosts}:{initialPosts:any}) => {
-
-   const {data}=useQuery({
-    queryKey: ['home-posts'],
-    queryFn: async () => {
-        const {data,error}= await getHomePosts()
-
-        if (error) throw error
-        return data
-    },
-    initialData: initialPosts,
-    refetchOnMount: false,
-    staleTime: 1000*60*5,
-    refetchOnWindowFocus: true //5 minuter
-   })
  
    
     return(

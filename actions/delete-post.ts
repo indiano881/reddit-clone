@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { createClient } from "../utils/supabase/server";
+import { revalidatePath } from "next/cache";
 
 const deletePost= async (postId: string) => {
     const supabase= createClient();
@@ -11,6 +12,7 @@ const deletePost= async (postId: string) => {
         throw error
     }
 
+    revalidatePath("/")
     redirect("/")
 }
 
