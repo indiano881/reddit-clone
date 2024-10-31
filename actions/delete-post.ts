@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "../utils/supabase/server";
 import { revalidatePath } from "next/cache";
 
-const deletePost= async (postId: string, authorId:string) => {
+const deletePost= async (postId: string) => {
     const supabase= createClient();
    
     const {data: post}= await supabase.from("posts").select("user_id").eq("id", postId).single();
