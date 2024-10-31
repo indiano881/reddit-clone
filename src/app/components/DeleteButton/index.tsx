@@ -11,7 +11,7 @@ const DeleteButton = ({postId} :{postId:string}) => {
         onError: (error)=> toast.error(error.message),
         onSuccess: ()=> toast.success("Your post was deleted"),
         onMutate: ()=>toast.loading("Deleting..."),
-        onSettled: ()=>toast.dismiss();
+        onSettled: ()=>toast.dismiss(),
 
 
     })
