@@ -8,8 +8,11 @@ const DeleteButton = ({postId} :{postId:string}) => {
 
     const {mutate}= useMutation({
         mutationFn:()=>deletePost(postId), 
-        onError: (error)=> toast(error.message),
-        onSuccess: ()=> toast("Your post was deleted"),
+        onError: (error)=> toast.error(error.message),
+        onSuccess: ()=> toast.success("Your post was deleted"),
+        onMutate: ()=>toast.loading("Deleting..."),
+        onSettled: ()=>toast.dismiss();
+
 
     })
 

@@ -31,7 +31,7 @@ export default function RootLayout({
       >
         <QueryClientProvider>
           <ThemeWrapper>
-            <Toaster />
+            <Toaster richColors/>
             <MenuSideDrawer />
             {children}
           </ThemeWrapper>
