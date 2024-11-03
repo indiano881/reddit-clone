@@ -2,6 +2,7 @@
 import DeleteButton from "@/app/components/DeleteButton";
 import { createClient } from "../../../../utils/supabase/server";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 
 
 const  SinglePost = async ({params}:{params: {slug: string}})=> {
@@ -26,6 +27,7 @@ const  SinglePost = async ({params}:{params: {slug: string}})=> {
                 <h4>{data[0].title}</h4>
                 <h4>{data[0].content}</h4>
                 <h4>{data[0].users?.email}</h4>
+                {isAuthor && <Link href={`/post/${params.slug}/edit`}>Edit post</Link>}
                 {isAuthor && <DeleteButton postId={data[0].id} />}
             </div>
         ): (<h5>post no visible </h5>)}

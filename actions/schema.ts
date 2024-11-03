@@ -6,7 +6,7 @@ export const logInSchema= z.object({
 
 })
 
-export const createPostschema= z.object({
+export const postSchema= z.object({
     title: z.string().min(3),
     content: z.string().optional(),
 })

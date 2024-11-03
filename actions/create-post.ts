@@ -2,14 +2,14 @@
 
 import { z } from "zod";
 import { createClient } from "../utils/supabase/server"
-import { createPostschema } from "./schema";
+import { postSchema } from "./schema";
 import { slugify } from "../utils/slugify";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 
-const createPost= async (data: z.infer<typeof createPostschema>) => {
-    //the .parse is zod´s method both validates and transforms the data object according to the rules in createPostschema. If data doesn’t meet the schema’s requirements, .parse will throw an error; if it passes, it will return data, potentially in a transformed form.
-    const parsedData= createPostschema.parse(data);
+const createPost= async (data: z.infer<typeof postSchema>) => {
+    //the .parse is zod´s method both validates and transforms the data object according to the rules in postSchema. If data doesn’t meet the schema’s requirements, .parse will throw an error; if it passes, it will return data, potentially in a transformed form.
+    const parsedData= postSchema.parse(data);
 
     const supabase= createClient();
 

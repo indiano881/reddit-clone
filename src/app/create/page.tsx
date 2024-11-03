@@ -1,7 +1,7 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createPostschema} from "../../../actions/schema";
+import { postSchema} from "../../../actions/schema";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import createPost from "../../../actions/create-post";
@@ -15,8 +15,8 @@ import { toast } from "sonner";
         onSuccess:()=> toast.success("Post created")
     }) 
 
-    const {register, handleSubmit, formState: {errors}}= useForm<z.infer<typeof createPostschema>>({
-        resolver: zodResolver(createPostschema)
+    const {register, handleSubmit, formState: {errors}}= useForm<z.infer<typeof postSchema>>({
+        resolver: zodResolver(postSchema)
     })
 
     return (
