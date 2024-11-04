@@ -10,3 +10,7 @@ export const postSchema= z.object({
     title: z.string().min(3),
     content: z.string().optional(),
 })
+
+export const commentSchema= z.object({
+    content: z.string()
+})

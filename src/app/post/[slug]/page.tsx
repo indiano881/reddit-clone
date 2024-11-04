@@ -2,6 +2,7 @@ import DeleteButton from "@/app/components/DeleteButton";
 import { createClient } from "../../../../utils/supabase/server";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import CreateCommentForm from "./commentForm";
 
 const SinglePost = async ({ params }: { params: { slug: string } }) => {
   const supabase = createClient();
@@ -52,6 +53,7 @@ const SinglePost = async ({ params }: { params: { slug: string } }) => {
       ) : (
         <h5>Post not visible</h5>
       )}
+      {user && <CreateCommentForm content={""} />}
     </div>
   );
 };
