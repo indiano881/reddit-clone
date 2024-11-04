@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { toast } from "sonner";
 import createComment from "../../../../actions/create-comment";
@@ -8,22 +8,23 @@ import { commentSchema } from "../../../../actions/schema";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-const CreateCommentForm = () => {
+const CreateCommentForm = ({ postId }: { postId: string }) => {
     const { mutate, isPending } = useMutation({
-        mutationFn: createComment,
+        mutationFn: (data: z.infer<typeof commentSchema>) => createComment(data, postId),
         onError: (error) => toast.error(error.message),
-        onSuccess: () => toast.success("Your comment was added")
+        onSuccess: () => toast.success("Your comment was added"),
     });
 
     const { register, handleSubmit, formState: { errors } } = useForm<z.infer<typeof commentSchema>>({
         resolver: zodResolver(commentSchema),
     });
 
-    
-
     return (
         <div>
-            <form onSubmit={handleSubmit((values)=> mutate(values))} className="flex w-full flex-col gap-4 m-20 bg-orange-800 border-2 border-black">
+            <form
+                onSubmit={handleSubmit((values) => mutate(values))}
+                className="flex w-full flex-col gap-4 m-20 bg-orange-800 border-2 border-black"
+            >
                 <label htmlFor="content">Content</label>
                 <input type="text" id="content" {...register("content")} />
                 {errors.content && <p>{errors.content.message}</p>}

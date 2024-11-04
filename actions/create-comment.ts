@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 import { commentSchema } from "./schema";
 import { z } from "zod";
 
-const createComment = async (data: z.infer<typeof commentSchema>) => {
+const createComment = async (data: z.infer<typeof commentSchema>, postId:string) => {
 
     const supabase = createClient();
     const { data: { user } } = await supabase.auth.getUser();
@@ -26,6 +26,7 @@ const createComment = async (data: z.infer<typeof commentSchema>) => {
                 content: data.content,
                 user_id: user.id,         
                 author_email: user.email,
+                post_id: postId
                
                 
             }
