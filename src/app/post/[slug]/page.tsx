@@ -41,9 +41,10 @@ const SinglePost = async ({ params }: { params: { slug: string } }) => {
           {isAuthor && <DeleteButton postId={data[0].id} />}
           {comments && comments.length > 0 && (
             <div>
-              <h4>Comments:</h4>
+              <h4 className="bg-blue-500">Comments:</h4>
               {comments.map((comment, index) => (
-                <p key={index}>{comment.content}</p>
+                <p key={index}>{comment.content} by {comment.author_email}</p>
+
               ))}
             </div>
           )}

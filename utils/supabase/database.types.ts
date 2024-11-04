@@ -11,6 +11,7 @@ export type Database = {
     Tables: {
       comments: {
         Row: {
+          author_email: string
           content: string
           created_at: string
           id: number
@@ -18,6 +19,7 @@ export type Database = {
           user_id: string
         }
         Insert: {
+          author_email: string
           content: string
           created_at?: string
           id?: number
@@ -25,6 +27,7 @@ export type Database = {
           user_id?: string
         }
         Update: {
+          author_email?: string
           content?: string
           created_at?: string
           id?: number
@@ -32,6 +35,13 @@ export type Database = {
           user_id?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "comments_author_email_fkey"
+            columns: ["author_email"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["email"]
+          },
           {
             foreignKeyName: "comments_post_id_fkey"
             columns: ["post_id"]
