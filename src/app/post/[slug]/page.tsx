@@ -3,6 +3,7 @@ import { createClient } from "../../../../utils/supabase/server";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import CreateCommentForm from "./commentForm";
+import DeleteCommentButton from "@/app/components/DeleteCommentsButton";
 
 const SinglePost = async ({ params }: { params: { slug: string } }) => {
   const supabase = createClient();
@@ -43,9 +44,12 @@ const SinglePost = async ({ params }: { params: { slug: string } }) => {
           {comments && comments.length > 0 && (
             <div>
               <h4 className="bg-blue-500">Comments:</h4>
-              {comments.map((comment, index) => (
+              {comments.map((comment, index) => (<>
                 <p className="m-4 bg-slate-400" key={index}>{comment.content} by {comment.author_email}</p>
-
+              <DeleteCommentButton commentId={comment.id} postId={data[0].id} />
+              </>
+               
+                
               ))}
             </div>
           )}
