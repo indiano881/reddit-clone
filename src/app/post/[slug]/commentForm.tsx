@@ -8,7 +8,7 @@ import { commentSchema } from "../../../../actions/schema";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-const CreateCommentForm = (data: z.infer<typeof commentSchema>) => {
+const CreateCommentForm = () => {
     const { mutate, isPending } = useMutation({
         mutationFn: createComment,
         onError: (error) => toast.error(error.message),
@@ -19,15 +19,11 @@ const CreateCommentForm = (data: z.infer<typeof commentSchema>) => {
         resolver: zodResolver(commentSchema),
     });
 
-    const onSubmit = (values: z.infer<typeof commentSchema>) => {
-        const formData = new FormData();
-        formData.append("content", values.content);
-        mutate(formData);
-    };
+    
 
     return (
         <div>
-            <form onSubmit={handleSubmit(onSubmit)} className="flex w-full flex-col gap-4 m-20 bg-orange-800 border-2 border-black">
+            <form onSubmit={handleSubmit((values)=> mutate(values))} className="flex w-full flex-col gap-4 m-20 bg-orange-800 border-2 border-black">
                 <label htmlFor="content">Content</label>
                 <input type="text" id="content" {...register("content")} />
                 {errors.content && <p>{errors.content.message}</p>}

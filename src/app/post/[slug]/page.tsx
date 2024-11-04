@@ -53,7 +53,7 @@ const SinglePost = async ({ params }: { params: { slug: string } }) => {
       ) : (
         <h5>Post not visible</h5>
       )}
-      {user && <CreateCommentForm content={""} />}
+      {user && <CreateCommentForm />}
     </div>
   );
 };
