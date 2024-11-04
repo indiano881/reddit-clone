@@ -43,7 +43,7 @@ const SinglePost = async ({ params }: { params: { slug: string } }) => {
             <div>
               <h4 className="bg-blue-500">Comments:</h4>
               {comments.map((comment, index) => (
-                <p key={index}>{comment.content} by {comment.author_email}</p>
+                <p className="m-4 bg-slate-400" key={index}>{comment.content} by {comment.author_email}</p>
 
               ))}
             </div>
