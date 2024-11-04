@@ -6,6 +6,7 @@ import ThemeWrapper from "./components/ThemeWrapper";
 import MenuSideDrawer from "./components/MenuSideDrawer";
 import { QueryClientProvider } from "../../providers/query-client-provider";
 import { Toaster } from "sonner";
+import NavbarNext from "./components/NavbarNext";
 
 
 const noto = localFont({
@@ -32,7 +33,7 @@ export default function RootLayout({
         <QueryClientProvider>
           <ThemeWrapper>
             <Toaster richColors/>
-            <MenuSideDrawer />
+            <NavbarNext/>
             {children}
           </ThemeWrapper>
         </QueryClientProvider>
