@@ -1,39 +1,58 @@
-
 import DeleteButton from "@/app/components/DeleteButton";
 import { createClient } from "../../../../utils/supabase/server";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 
+const SinglePost = async ({ params }: { params: { slug: string } }) => {
+  const supabase = createClient();
 
-const  SinglePost = async ({params}:{params: {slug: string}})=> {
-    
-    const supabase= createClient();
-    const {data}= await supabase
+  // Fetch the post by slug
+  const { data } = await supabase
     .from("posts")
-    .select('id,title, content, user_id, users("email")')
-    .eq('slug',params.slug)
-    
+    .select("id, title, content, user_id, users(email)")
+    .eq("slug", params.slug);
 
-    if (!data) notFound()
+  if (!data || data.length === 0) {
+    notFound();
+    return null;  // This prevents TypeScript from throwing the error
+  }
 
-        const {data: {user}} = await supabase.auth.getUser();
+  // Fetch authenticated user
+  const { data: { user } = {} } = await supabase.auth.getUser();
 
-        const isAuthor= user && user.id===data[0].user_id
-    return (
-        <div className="m-20 bg-yellow-200">
-        <h2>Page single article</h2>
-        {data ? (
+  // Check if the user is the author
+  const isAuthor = user && user.id === data[0].user_id;
+
+  // Fetch comments
+  const { data: comments } = await supabase
+    .from("comments")
+    .select("*")
+    .eq("post_id", data[0].id);
+
+  return (
+    <div className="m-20 bg-yellow-200">
+      <h2>Page single article</h2>
+      {data ? (
+        <div>
+          <h4>{data[0].title}</h4>
+          <h4>{data[0].content}</h4>
+          <h4>{data[0].users?.email}</h4>
+          {isAuthor && <Link href={`/post/${params.slug}/edit`}>Edit post</Link>}
+          {isAuthor && <DeleteButton postId={data[0].id} />}
+          {comments && comments.length > 0 && (
             <div>
-                <h4>{data[0].title}</h4>
-                <h4>{data[0].content}</h4>
-                <h4>{data[0].users?.email}</h4>
-                {isAuthor && <Link href={`/post/${params.slug}/edit`}>Edit post</Link>}
-                {isAuthor && <DeleteButton postId={data[0].id} />}
+              <h4>Comments:</h4>
+              {comments.map((comment, index) => (
+                <p key={index}>{comment.content}</p>
+              ))}
             </div>
-        ): (<h5>post no visible </h5>)}
-        
+          )}
         </div>
-    )
-}
+      ) : (
+        <h5>Post not visible</h5>
+      )}
+    </div>
+  );
+};
 
 export default SinglePost;
