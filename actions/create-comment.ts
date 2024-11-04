@@ -1,14 +1,11 @@
 "use server"
 
-import { z } from "zod"
-import { commentSchema } from "./schema"
 import { createClient } from "../utils/supabase/server";
 import { revalidatePath } from "next/cache";
+import { commentSchema } from "./schema";
+import { z } from "zod";
 
-const createComment = async (formData: FormData) => {
-    const data = {
-        content: formData.get("content") as string,
-    };
+const createComment = async (data: z.infer<typeof commentSchema>, post_id: string) => {
 
     const supabase = createClient();
     const { data: { user } } = await supabase.auth.getUser();
@@ -21,6 +18,7 @@ const createComment = async (formData: FormData) => {
         throw new Error("User email is required but not available");
     }
 
+
     const { error } = await supabase
         .from("comments")
         .insert([
@@ -28,6 +26,8 @@ const createComment = async (formData: FormData) => {
                 content: data.content,
                 user_id: user.id,         
                 author_email: user.email,
+                post_id: post_id
+                
             }
         ])
         .throwOnError();
