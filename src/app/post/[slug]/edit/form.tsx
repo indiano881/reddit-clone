@@ -30,14 +30,15 @@ const EditPostForm = ({defaultValues, postId}: {defaultValues: Pick<Tables<"post
     return (
         <div>
             
-            <form onSubmit={handleSubmit((data)=> mutate({data, postId}))} className="flex w-full flex-col gap-4 m-20 bg-orange-800 border-2 border-black">
+            <form onSubmit={handleSubmit((data)=> mutate({data, postId}))} className="bg-orange-600 flex flex-col m-20 p-8 border-4 border-black items-center">
+                <h1 className="font-bold text-xl">Edit post</h1>
                 <label htmlFor="title">title</label>
-                <input type="text" id="title"  {...register("title")}/>
+                <input type="text" id="title"  {...register("title")} className="rounded-xl border-2 border-black mb-4 w-[98%] sm:w-[75%]  md:w-[50%]" />
                 {errors.title && <p> {errors.title.message}</p>}
                 <label htmlFor="content">content</label>
-                <input type="text" id="content" {...register("content")}/>
+                <input type="text" id="content" {...register("content")} className="rounded-xl border-2 border-black mb-4 w-[98%] sm:w-[75%]  md:w-[50%]" />
                 {errors.content && <p> {errors.content.message}</p>}
-                <button type="submit" className="bg-purple-400">{isPending ? "Editing post" : "Edit post"}</button>
+                <button type="submit" className="border-2 border-black rounded-xl bg-green-500 hover:bg-green-200 w-[98%] sm:w-[75%] md:w-[20%]">{isPending ? "Editing post" : "Edit post"}</button>
             </form>
         </div>
     )

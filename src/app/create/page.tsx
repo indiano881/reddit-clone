@@ -22,7 +22,7 @@ import { toast } from "sonner";
     return (
     <>
       
-      <form onSubmit={handleSubmit((values)=>mutate(values))}className="bg-orange-600 flex flex-col m-20 p-8 border-4 border-black items-center">
+      <form onSubmit={handleSubmit((values)=>mutate(values))} className="bg-orange-600 flex flex-col m-20 p-8 border-4 border-black items-center">
         <h1 className="font-bold text-xl">Create Page </h1>
         <label htmlFor="title">Title</label>
         <input type="text" id="title" {...register("title")} className="rounded-xl border-2 border-black mb-4 w-[98%] sm:w-[75%]  md:w-[50%]" />
