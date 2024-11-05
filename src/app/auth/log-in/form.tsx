@@ -18,17 +18,18 @@ export const LogInForm = () => {
     });
 
     return (
-        <form onSubmit={handleSubmit((values) => mutate(values))} className="bg-pink-400 flex flex-col m-20 p-8 border-4 w-[50%]">
+
+        <form onSubmit={handleSubmit((values) => mutate(values))} className="bg-orange-200 flex flex-col m-20 p-8 border-4 border-black items-center">
             <label htmlFor="email">Email</label>
-            <input {...register("email")} name="email" id="email" required />
-            {errors.email && <p className="text-red-500">{errors.email.message}</p>} 
+            <input {...register("email")} name="email" id="email" required className="rounded-xl border-2 border-black mb-4 w-[98%] sm:w-[75%]  md:w-[50%]"/>
+            {errors.email && <p className="text-red-500 font-bold">{errors.email.message}</p>} 
 
             <label htmlFor="password">Password</label>
-            <input {...register("password")} name="password" id="password" required />
-            {errors.password && <p className="text-red-500">{errors.password.message}</p>}
+            <input {...register("password")} name="password" id="password" required className="rounded-xl border-2 border-black mb-4 w-[98%] sm:w-[75%]  md:w-[50%]"/>
+            {errors.password && <p className="text-red-500 font-bold">{errors.password.message}</p>}
 
-            <button type="submit">{isPending ? "Logging in..." : "Log in"}</button>
-            {error && <p className="text-red-500">{error.message}</p>}
+            <button type="submit" className="border-2 border-black rounded-xl bg-green-500 hover:bg-green-200 w-[98%] sm:w-[75%] md:w-[20%]">{isPending ? "Logging in..." : "Log in"}</button>
+            {error && <p className="text-red-500 font-bold">{error.message}</p>}
         </form>
     );
 }
