@@ -9,6 +9,7 @@ export const logInSchema= z.object({
 export const postSchema= z.object({
     title: z.string().min(3),
     content: z.string().optional(),
+    image: z.instanceof(FormData)
 })
 
 export const commentSchema= z.object({
