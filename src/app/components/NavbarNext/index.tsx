@@ -12,7 +12,7 @@ const NavbarNext = async() => {
     return (
     <Navbar>
       <NavbarBrand>
-       <img src="/images/reddit_2023.svg" alt="reddit logo" width="80px" height="auto"/>
+       <img src="/images/reddit2023.svg" alt="reddit logo" width="80px" height="auto"/>
 
       </NavbarBrand>
       <NavbarContent className="" justify="center">
