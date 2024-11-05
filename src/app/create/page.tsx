@@ -21,15 +21,16 @@ import { toast } from "sonner";
 
     return (
     <>
-      <h1 className="bg-zinc-500">Create Page </h1>
-      <form onSubmit={handleSubmit((values)=>mutate(values))} className="flex w-full flex-col gap-4 m-20 bg-orange-800 border-2 border-black">
-        <label htmlFor="title">title</label>
-        <input type="text" id="title" {...register("title")}  />
+      
+      <form onSubmit={handleSubmit((values)=>mutate(values))}className="bg-orange-600 flex flex-col m-20 p-8 border-4 border-black items-center">
+        <h1 className="font-bold text-xl">Create Page </h1>
+        <label htmlFor="title">Title</label>
+        <input type="text" id="title" {...register("title")} className="rounded-xl border-2 border-black mb-4 w-[98%] sm:w-[75%]  md:w-[50%]" />
         {errors.title && <p> {errors.title.message}</p>}
-        <label htmlFor="content">content</label>
+        <label htmlFor="content">Content</label>
         {errors.content && <p> {errors.content.message}</p>}
-        <input type="text" id="content"{...register("content")} />
-        <button type="submit" className="bg-purple-400">{isPending? "Uploading Post" : "Create Post"}</button>
+        <input type="text" id="content"{...register("content")} className="rounded-xl border-2 border-black mb-4 w-[98%] sm:w-[75%]  md:w-[50%]"/>
+        <button type="submit" className="border-2 border-black rounded-xl bg-green-500 hover:bg-green-200 w-[98%] sm:w-[75%] md:w-[20%]">{isPending? "Uploading Post" : "Create Post"}</button>
       </form>
     </>
     
