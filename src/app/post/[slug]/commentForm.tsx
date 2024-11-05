@@ -20,15 +20,15 @@ const CreateCommentForm = ({ postId }: { postId: string }) => {
     });
 
     return (
-        <div>
+        <div className="mr-2">
             <form
                 onSubmit={handleSubmit((values) => mutate(values))}
-                className="flex w-full flex-col gap-4 m-20 bg-orange-800 border-2 border-black"
+                className="flex w-full flex-col  border-2 bg-slate-300 border-black rounded-xl mb-8 mr-4"
             >
-                <label htmlFor="content">Content</label>
-                <input type="text" id="content" {...register("content")} />
+                <label htmlFor="content" className="text-xl p-2">Add comment:</label>
+                <input type="text" id="content" {...register("content")} className="mx-8 rounded-xl border-2 border-black"/>
                 {errors.content && <p>{errors.content.message}</p>}
-                <button type="submit" className="bg-purple-400">
+                <button type="submit" className="bg-green-600 mx-8 my-4 border-2 border-black rounded-xl hover:bg-green-400">
                     {isPending ? "Adding..." : "Add comment"}
                 </button>
             </form>

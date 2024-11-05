@@ -50,7 +50,6 @@ const SinglePost = async ({ params }: { params: { slug: string } }) => {
                   <DeleteCommentButton commentId={comment.id} postId={data[0].id} />
               </div>
               </>
-               
                 
               ))}
             </div>
