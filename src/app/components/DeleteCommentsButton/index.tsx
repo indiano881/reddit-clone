@@ -20,7 +20,7 @@ const DeleteCommentButton = ({commentId, postId} :{commentId:number, postId:stri
 
     return (
         <>
-            <button onClick={()=>mutate()} className="bg-red-700 border-2 border-black hover:bg-red-400">delete</button>
+            <button onClick={()=>mutate()} className="bg-red-600 border-2 border-black hover:bg-red-400 rounded-xl px-2 my-4">Delete comment</button>
         </>
     )
 }

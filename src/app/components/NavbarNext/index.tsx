@@ -23,6 +23,9 @@ const NavbarNext = async() => {
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
+        <NavbarItem>
+          {user && <Link href={"/create"}>Create post</Link>}
+          </NavbarItem>
         <NavbarItem >
             {!user ?  <Link href="/auth/log-in">Login</Link>:  <LogOutButton />}
         </NavbarItem>
