@@ -6,10 +6,13 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { signUpSchema } from "../../../../actions/schema"
+import { toast } from "sonner"
 
 export const SignUpForm = () => {
     const { mutate, error, isPending } = useMutation({
         mutationFn: signUp,
+        onError: (error)=>toast.error(error.message),
+        onSuccess:()=> toast.success("Sign up completed")
     });
     
     const { register, handleSubmit, formState: { errors } } = useForm<z.infer<typeof signUpSchema>>({
