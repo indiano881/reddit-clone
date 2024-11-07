@@ -47,7 +47,7 @@ const SinglePost = async ({ params }: { params: { slug: string } }) => {
                 <div className="my-4 mr-2 border-2 border-black rounded-xl px-4" key={index}>
                   <p className="text-lg">{comment.content}</p>
                   <p className="italic">by {comment.author_email}</p>
-                  <DeleteCommentButton commentId={comment.id} postId={data[0].id} />
+                 {isAuthor && <DeleteCommentButton commentId={comment.id} postId={data[0].id} />} 
               </div>
               </>
                 
