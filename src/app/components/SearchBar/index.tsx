@@ -1,39 +1,55 @@
 "use client";
 
-
 import { TextField } from "@mui/material";
 import { getPostByQuery } from "../../../../utils/supabase/queries";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const SearchBar = () => {
-  
-    const [search, setSearch]= useState<string>("")
+const SearchBar = ({ setSearch, search }: { setSearch: (value: string) => void, search: string }) => {
+    const [inputValue, setInputValue] = useState(search);
+
+    // Debounce logic: Update the `setSearch` only after user stops typing for 300ms
+    useEffect(() => {
+        const handler = setTimeout(() => {
+            if (inputValue.trim() !== "") {
+                setSearch(inputValue);
+                fetchPosts(inputValue);
+            } else {
+                setSearch(""); // Reset if input is empty
+            }
+        }, 300); // 300ms delay
+
+        return () => {
+            clearTimeout(handler); 
+        };
+    }, [inputValue]);
+
     
-
-    const handleSearchChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
-        const value = event.target.value;
-        setSearch(value)
-
+    const fetchPosts = async (query: string) => {
         try {
-            const { data } = await getPostByQuery(value);
+            const { data } = await getPostByQuery(query);
             console.log(data);
-            
         } catch (error) {
             console.error("Error fetching posts:", error);
         }
     };
 
+    
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setInputValue(event.target.value);
+    };
+
     return (
         <div className="m-20">
             <TextField
-        fullWidth
-        id="outlined-controlled"
-        label="Search"
-        value={search}
-        onChange={handleSearchChange}
-    /></div>
-        
+                fullWidth
+                id="outlined-controlled"
+                label="Search"
+                value={inputValue}
+                onChange={handleInputChange}
+            />
+        </div>
     );
 };
 
 export default SearchBar;
+
