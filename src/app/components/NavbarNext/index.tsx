@@ -11,25 +11,25 @@ const NavbarNext = async() => {
 
     return (
     <Navbar>
-      <NavbarBrand>
+      <NavbarBrand className="pl-4">
        <img src="/images/reddit2023.svg" alt="reddit logo" width="80px" height="auto"/>
 
       </NavbarBrand>
-      <NavbarContent className="" justify="center">
+      <NavbarContent className="px-4" justify="center">
         <NavbarItem>
           <Link color="foreground" href="/">
             Home
           </Link>
         </NavbarItem>
       </NavbarContent>
-      <NavbarContent justify="end">
-        <NavbarItem>
+      <NavbarContent justify="end" >
+        <NavbarItem className="px-4">
           {user && <Link href={"/create"}>Create post</Link>}
           </NavbarItem>
-        <NavbarItem >
+        <NavbarItem className="px-3">
             {!user ?  <Link href="/auth/log-in">Login</Link>:  <LogOutButton />}
         </NavbarItem>
-        <NavbarItem>
+        <NavbarItem >
             {!user &&  <Button as={Link} color="primary" href="/auth/sign-up" variant="flat">Sign Up</Button>}
         </NavbarItem>
       </NavbarContent>
