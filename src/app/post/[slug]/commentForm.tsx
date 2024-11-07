@@ -28,7 +28,7 @@ const CreateCommentForm = ({ postId }: { postId: string }) => {
                 <label htmlFor="content" className="text-xl p-2">Add comment:</label>
                 <input type="text" id="content" {...register("content")} className="mx-8 rounded-xl border-2 border-black"/>
                 {errors.content && <p>{errors.content.message}</p>}
-                <button type="submit" className="bg-green-600 mx-8 my-4 border-2 border-black rounded-xl hover:bg-green-400">
+                <button type="submit" className="bg-green-600 mx-8 my-4 border-2 border-black rounded-xl hover:bg-green-400 max-w-[145px]">
                     {isPending ? "Adding..." : "Add comment"}
                 </button>
             </form>

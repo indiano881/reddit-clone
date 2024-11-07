@@ -32,7 +32,7 @@ const SinglePost = async ({ params }: { params: { slug: string } }) => {
     .eq("post_id", data[0].id);
 
   return (
-    <div className="flex flex-col bg-white m-4 pl-20 rounded-2xl  border-2 border-black">
+    <div className="flex flex-col bg-white m-4 pl-4 md:pl-20 rounded-2xl  border-2 border-black">
       {data ? (
         <div >
           <h1 className="text-3xl py-8 font-semibold">{data[0].title}</h1>
