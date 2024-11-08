@@ -12,8 +12,6 @@ const DeleteButton = ({postId} :{postId:string}) => {
         onSuccess: ()=> toast.success("Your post was deleted"),
         onMutate: ()=>toast.loading("Deleting..."),
         onSettled: ()=>toast.dismiss(),
-
-
     })
 
     return (

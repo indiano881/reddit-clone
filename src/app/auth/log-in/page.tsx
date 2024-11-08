@@ -1,10 +1,9 @@
 import { LogInForm } from "./form";
 
-
 const LogIn = () => {
     return (
         <>
-        <LogInForm />
+            <LogInForm />
         </>
     )
 }

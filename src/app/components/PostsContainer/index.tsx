@@ -9,7 +9,6 @@ export const revalidate = 60 * 15;
 const PostsContainer = ({ initialPosts }: { initialPosts: any }) => {
     const [searchInput, setSearchInput] = useState(""); 
     const [filteredPosts, setFilteredPosts] = useState(initialPosts); 
-
    
     useEffect(() => {
         if (searchInput.trim() === "") {

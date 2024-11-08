@@ -5,7 +5,7 @@ import { logOut } from "../../../../actions/log-out";
 const LogOutButton = () => {
     return (
         <>
-        <button onClick={()=>logOut()}>Log out</button>
+            <button onClick={()=>logOut()}>Log out</button>
         </>
     )
 }

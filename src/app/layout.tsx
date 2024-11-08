@@ -1,9 +1,7 @@
-
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import ThemeWrapper from "./components/ThemeWrapper";
-import MenuSideDrawer from "./components/MenuSideDrawer";
 import { QueryClientProvider } from "../../providers/query-client-provider";
 import { Toaster } from "sonner";
 import NavbarNext from "./components/NavbarNext";

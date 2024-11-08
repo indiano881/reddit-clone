@@ -9,7 +9,7 @@ import { signUpSchema } from "../../../../actions/schema"
 import { toast } from "sonner"
 
 export const SignUpForm = () => {
-    const { mutate, error, isPending } = useMutation({
+    const { mutate } = useMutation({
         mutationFn: signUp,
         onError: (error)=>toast.error(error.message),
         onSuccess:()=> toast.success("Sign up completed")

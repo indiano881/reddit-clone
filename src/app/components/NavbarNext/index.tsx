@@ -1,5 +1,3 @@
-
-
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button} from "@nextui-org/react";
 import { createClient } from "../../../../utils/supabase/server";
 import LogOutButton from "../LogOutButton";

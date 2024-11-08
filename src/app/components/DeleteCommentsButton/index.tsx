@@ -1,8 +1,6 @@
 "use client"
 
-import { deleteChunks } from "@supabase/ssr";
 import { useMutation } from "@tanstack/react-query";
-
 import { toast } from "sonner";
 import deleteComments from "../../../../actions/delete-comments";
 
@@ -14,8 +12,6 @@ const DeleteCommentButton = ({commentId, postId} :{commentId:number, postId:stri
         onSuccess: ()=> toast.success("Your post was deleted"),
         onMutate: ()=>toast.loading("Deleting..."),
         onSettled: ()=>toast.dismiss(),
-
-
     })
 
     return (
