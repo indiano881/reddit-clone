@@ -29,7 +29,7 @@ const SinglePost = async ({ params }: { params: { slug: string } }) => {
         <div>
           <h1 className="text-3xl py-8 font-semibold">{data[0].title}</h1>
           <h4 className="text-2xl py-4">{data[0].content}</h4>
-          <h4 className="text-xl py-4">A post by: {data[0].users?.email}</h4>
+          <h4 className="text-xl py-4 break-all mr-2">A post by: {data[0].users?.email}</h4>
           {isAuthor && (
             <Link
               href={`/post/${params.slug}/edit`}
@@ -47,7 +47,7 @@ const SinglePost = async ({ params }: { params: { slug: string } }) => {
                 return (
                   <div className="my-4 mr-2 border-2 border-black rounded-xl px-4" key={index}>
                     <p className="text-lg">{comment.content}</p>
-                    <p className="italic">by {comment.author_email}</p>
+                    <p className="italic break-all">by {comment.author_email}</p>
                     {(isAuthor || isCommentAuthor) && (
                       <DeleteCommentButton commentId={comment.id} postId={data[0].id} />
                     )}
